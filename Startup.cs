@@ -30,7 +30,8 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IBookRepository, BookRepository>();
-            services.AddDbContext<BookContext>(o => o.UseSqlite("Data source=books.db"));
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddDbContext<BookContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddSwaggerGen(); //https://www.c-sharpcorner.com/article/swagger-in-dotnet-core/
         }

@@ -1,5 +1,6 @@
 # Introduction
-- This is a simple repo for learning purpose and is written in ***.NET Core 3.1*** with a ***Sqlite Database***. It performs a CRUD API with a Swagger API Documentation.
+- This is a simple repo for learning purpose. It performs a CRUD API with a Swagger API Documentation.
+- It use ***.NET Core 3.1***, ***SQLServer EntityFramework*** and of course a SQlServer Database
 
 ## Authors details
 
