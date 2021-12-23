@@ -9,8 +9,8 @@ namespace WebAPI.Repository
 {
     public class BookRepository : IBookRepository
     {
-        private readonly BookContext _context;
-        public BookRepository(BookContext context)
+        private readonly LibraryContext _context;
+        public BookRepository(LibraryContext context)
         {
             _context = context;
         }
