@@ -34,6 +34,7 @@ namespace WebAPI
         {
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddDbContext<LibraryContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddSwaggerGen(option =>

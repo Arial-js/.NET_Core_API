@@ -11,10 +11,10 @@ namespace WebAPI.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        public UsersController(IUserRepository userRepository)
+        public UserController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
@@ -34,8 +34,8 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser([FromBody] User user)
         {
-            var newBook = await _userRepository.Create(user);
-            return CreatedAtAction(nameof(GetUser), new { id = newBook.Id }, newBook);
+            var newUser = await _userRepository.Create(user);
+            return CreatedAtAction(nameof(GetUser), new { id = newUser.Id }, newUser);
         }
 
         [HttpPut]
@@ -51,13 +51,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteBooks(int id)
+        public async Task<ActionResult> DeleteUser(int id)
         {
-            var bookToDelete = await _userRepository.Get(id);
-            if (bookToDelete == null)
+            var userToDelete = await _userRepository.Get(id);
+            if (userToDelete == null)
                 return NotFound();
 
-            await _userRepository.Delete(bookToDelete.Id);
+            await _userRepository.Delete(userToDelete.Id);
             return NoContent();
         }
     }
