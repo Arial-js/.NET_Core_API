@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Model;
@@ -36,6 +37,11 @@ namespace WebAPI.Repository
         public async Task<User> Get(int id)
         {
             return await _context.Users.FindAsync(id);
+        }
+
+        public async Task<User> GetByEmail(string email)
+        {
+            return await _context.Users.FirstAsync(u => u.Email == email);
         }
 
         public async Task Update(User user)

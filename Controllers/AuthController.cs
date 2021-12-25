@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using WebAPI.Model;
+using WebAPI.Repository;
 
 namespace WebAPI.Controllers
 {
@@ -14,6 +15,12 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly IUserRepository _userRepository;
+        public AuthController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         [HttpPost, Route("login")]
         public IActionResult Login([FromBody] User user)
         {
@@ -21,13 +28,17 @@ namespace WebAPI.Controllers
             {
                 return BadRequest("Invalid request");
             }
-
-            if (user.Username == "Andrea" && user.Password == "ciao")
+            var userFound = _userRepository.GetByEmail(user.Email);
+            if(userFound == null)
+            {
+                return NotFound("User not found");
+            }
+            if (user.Password == userFound.Result.Password)
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("M=}YcMjHMJUk=KiL{cxX)Bq(ZZ4Xc*&=}$a]mNQxfqb283);pwbc?(4jLfAudL{F3Z5G(;w_D7D*bm/83}&U,?EZ_;ehd/qw[T9HCCa-Q@GiwD94StiVw4QMQnh(9nbS"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
-                var tokeOptions = new JwtSecurityToken(
+                var tokenOptions = new JwtSecurityToken(
                     issuer: "http://localhost:44356",
                     audience: "http://localhost:44356",
                     claims: new List<Claim>(),
@@ -35,7 +46,7 @@ namespace WebAPI.Controllers
                     signingCredentials: signinCredentials
                 );
 
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
                 return Ok(new { Token = tokenString });
             }
             else

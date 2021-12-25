@@ -11,5 +11,6 @@ namespace WebAPI.Repository
         Task<User> Create(User user);
         Task Update(User user);
         Task Delete(int id);
+        Task<User> GetByEmail(string email);
     }
 }
