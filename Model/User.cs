@@ -6,11 +6,11 @@ namespace WebAPI.Model
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Field required!")]
+        [Required(ErrorMessage = "Email required!")]
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Email is not valid.")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Field required!")]
+        [Required(ErrorMessage = "Password required!")]
         public string Password { get; set; }
     }
 }
