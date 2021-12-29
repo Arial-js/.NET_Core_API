@@ -8,9 +8,12 @@ namespace WebAPI.Model
 
         [Required(ErrorMessage = "Email required!")]
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Email is not valid.")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Password required!")]
+        [MinLength(4, ErrorMessage = "Password must be at least 4 characters")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }

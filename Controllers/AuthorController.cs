@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
             return CreatedAtAction(nameof(GetAuthor), new { id = newAuthor.Id }, newAuthor);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<ActionResult> PutAuthor(int id, [FromBody] Author author)
         {
             if (id != author.Id)

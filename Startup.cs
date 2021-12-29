@@ -107,6 +107,7 @@ namespace WebAPI
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Test1 Api v1");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "My Test1 Api v2");
             });
         }
     }
