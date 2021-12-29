@@ -73,7 +73,6 @@ namespace WebAPI
                    ValidateAudience = true,
                    ValidateLifetime = true,
                    ValidateIssuerSigningKey = true,
-
                    ValidIssuer = "http://localhost:44356",
                    ValidAudience = "http://localhost:44356",
                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("M=}YcMjHMJUk=KiL{cxX)Bq(ZZ4Xc*&=}$a]mNQxfqb283);pwbc?(4jLfAudL{F3Z5G(;w_D7D*bm/83}&U,?EZ_;ehd/qw[T9HCCa-Q@GiwD94StiVw4QMQnh(9nbS"))
@@ -107,7 +106,6 @@ namespace WebAPI
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Test1 Api v1");
-                c.SwaggerEndpoint("/swagger/v2/swagger.json", "My Test1 Api v2");
             });
         }
     }
